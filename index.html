@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Virtual Ranch</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .tabs { display: flex; background: #333; color: #fff; }
+    .tab { padding: 10px 20px; cursor: pointer; }
+    .tab:hover { background: #555; }
+    .tab.active { background: #000; }
+    .content { display: none; padding: 20px; }
+    .content.active { display: block; }
+    #coins { padding: 10px; background: #eee; font-weight: bold; }
+    .horse-card { border: 1px solid #ccc; background: #fff; padding: 10px; margin: 10px; display: inline-block; width: 240px; vertical-align: top; }
+    .horse-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+</style>
+<style>
+.horse-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+  font-family: sans-serif;
+  line-height: 1.4;
+}
+.horse-card h3 {
+  margin: 0 0 4px 0;
+}
+.horse-card .stats-line {
+  margin-top: 4px;
+}
+.horse-card .potential-bar {
+  height: 12px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #76c7c0;
+}
+
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+</style>
+<style>
+.horse-card {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+.horse-card input[type="text"] {
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+.horse-card .section {
+  margin-top: 6px;
+}
+.horse-card .stats-line {
+  display: flex;
+  gap: 12px;
+}
+.horse-card .potential-bar {
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  padding-left: 20px;
+  margin: 4px 0 4px 0;
+}
+.horse-card ul li {
+  margin-bottom: 2px;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+.horse-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.horse-card input[type="text"] {
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+.horse-card .line-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.horse-card .stat-line {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.horse-card .label {
+  font-weight: bold;
+}
+.horse-card .potential-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.horse-card .potential-fill {
+  height: 100%;
+  background-color: #4caf50;
+}
+.horse-card ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+.horse-card ul li {
+  margin: 2px 0;
+}
+</style>
+<style>
+body {
+  font-family: 'Georgia', serif;
+  background-color: #f4f1ea;
+  color: #4b3e2a;
+}
+
+button {
+  background-color: #8b5e3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #a36e4f;
+}
+
+.horse-card {
+  background-color: #fff8f0;
+  border: 1px solid #d2b48c;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+
+input[type="text"] {
+  background-color: #fffdf6;
+  border: 1px solid #c8b198;
+  color: #4b3e2a;
+}
+
+select {
+  background-color: #fffdf6;
+  border: 1px solid #c8b198;
+  color: #4b3e2a;
+}
+
+#tabs button.active {
+  background-color: #a36e4f !important;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+<h1 style="text-align:center; margin-top: 20px;">Virtual Ranch</h1>
+<div id="coins">Coins: <span id="coinCount">1000</span></div>
+<div id="gameDate" style="padding: 10px; background: #eef; font-weight: bold;">
+    Date: <span id="dateDisplay"></span>
+</div>
+<div class="tabs" id="tabBar">
+<div class="tab active" data-tab="salesYard">Sales Yard</div>
+<div class="tab" data-tab="employment">Employment</div>
+<div class="tab" data-tab="stable">My Stable</div>
+<div class="tab" data-tab="clubhouse">Clubhouse</div>
+<div class="tab" data-tab="breeding">Breeding</div>
+<div class="tab" data-tab="workshop">Workshop</div>
+<div class="tab" data-tab="tackRoom">Tack Room</div>
+<div class="tab" data-tab="shows">Shows</div>
+<div class="tab" data-tab="settings">Settings</div>
+</div>
+<div class="content active" id="salesYard">
+<h2>Sales Yard</h2>
+<div class="horse-grid" id="salesGrid"></div>
+</div>
+<div class="content" id="employment">
+<h2>Hire Riders</h2>
+<p>Riders cost 100,000 coins. They start with all stats at 1.</p>
+<button onclick="hireRider()">Hire Rider</button>
+</div>
+<div class="content" id="stable">
+<h2>My Stable</h2>
+<div class="horse-grid" id="stableGrid"></div>
+</div>
+<div class="content" id="clubhouse">
+<h2>Clubhouse</h2>
+<div id="riderList"></div>
+</div>
+<div class="content" id="breeding">
+<h2>Breeding</h2>
+<label for="mareSelect">Select Mare:</label>
+<select id="mareSelect"></select><br/><br/>
+<label for="stallionSelect">Select Stallion:</label>
+<select id="stallionSelect"></select><br/><br/>
+<button onclick="breedHorses()">Breed</button>
+<div id="breedResult" style="margin-top:10px;"></div>
+</div>
+<div class="content" id="workshop">
+<h2>Workshop</h2>
+<div class="horse-grid" id="workshopStats"></div>
+</div>
+<div class="content" id="tackRoom"><h2>Tack Room</h2></div>
+<div class="content" id="shows"><h2>Shows</h2>
+<div>
+<label for="showHorseSelect">Select Horse:</label>
+<select id="showHorseSelect" onchange="updateShowDifficulty()"></select><div id="showDifficulty" style="margin-top: 10px;"></div>
+<button onclick="enterShow()">Enter Show</button>
+</div>
+<div id="showResults" style="margin-top: 20px;"></div>
+</div>
+<script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    let gameState = {
+      coins: 1000,
+      horses: [],
+      sales: [],
+  riders: [],
+      date: {
+        year: 0,
+        month: 0,
+        lastUpdate: Date.now()
+      }
+    };
+
+    function getRandomGender() {
+      return Math.random() < 0.5 ? 'Mare' : 'Stallion';
+    }
+
+    function generateHorse() {
+      return {
+        name: 'Unnamed Horse',
+        gender: getRandomGender(),
+        jumping: 1,
+        endurance: 1,
+        speed: 1,
+        obedience: 1,
+        potential: 0,
+        assignedRiderId: null,
+        age: { years: 3, months: 0 }
+      };
+    }
+
+    function renderSalesYard() {
+      const salesGrid = document.getElementById('salesGrid');
+      salesGrid.innerHTML = '';
+      while (gameState.sales.length < 4) {
+        gameState.sales.push(generateHorse());
+      }
+      gameState.sales.forEach((horse, index) => {
+        const card = document.createElement('div');
+        card.className = 'horse-card';
+        card.innerHTML = `
+          <strong>${horse.name}</strong><br>
+          Gender: ${horse.gender}<br>
+          Age: ${horse.age.years} years, ${horse.age.months} months<br>
+          Jumping: ${horse.jumping}, Endurance: ${horse.endurance}, Speed: ${horse.speed}, Obedience: ${horse.obedience}<br>
+          Potential: ${horse.potential}/1000
+        `;
+        const btn = document.createElement('button');
+        btn.textContent = 'Buy for 1000 coins';
+        btn.onclick = () => {
+          if (gameState.coins >= 1000) {
+            gameState.coins -= 1000;
+            gameState.horses.push(horse);
+            gameState.sales.splice(index, 1);
+            document.getElementById('coinCount').textContent = gameState.coins;
+            renderSalesYard();
+  renderWorkshop();
+  renderTackRoom();
+  renderShowDropdown();
+  renderBreedingDropdowns();
+            renderStable();
+          } else {
+            alert('Not enough coins.');
+          }
+        };
+        card.innerHTML += '<br>';
+        card.appendChild(btn);
+        salesGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      advanceDate();
+      document.getElementById('dateDisplay').textContent = `${monthNames[gameState.date.month]} Year ${gameState.date.year}`;
+      document.getElementById('coinCount').textContent = gameState.coins;
+      renderSalesYard();
+  renderWorkshop();
+  renderTackRoom();
+  renderShowDropdown();
+  renderBreedingDropdowns();
+    });
+
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const rawSave = localStorage.getItem("virtualRanchSave");
+if (rawSave) {
+  gameState = structuredClone(JSON.parse(rawSave));
+}
+
+function saveGameState() {
+  localStorage.setItem("virtualRanchSave", JSON.stringify(gameState));
+}
+
+function initializeGame() {
+  if (!gameState.sales || gameState.sales.length < 4) {
+    gameState.sales = gameState.sales || [];
+    while (gameState.sales.length < 4) {
+      gameState.sales.push(generateSaleHorse());
+    }
+  }
+  document.getElementById("coinCount").textContent = gameState.coins;
+  document.getElementById("dateDisplay").textContent = `${monthNames[gameState.date.month]} Year ${gameState.date.year}`;
+  renderSalesYard();
+  renderStable();
+  renderWorkshop();
+  renderTackRoom();
+  renderShowDropdown();
+  renderBreedingDropdowns();
+}
+
+
+    function advanceDate() {
+      const now = Date.now();
+      const msInADay = 86400000;
+      const timePassed = now - gameState.date.lastUpdate;
+      if (timePassed >= msInADay) {
+        const monthsToAdd = Math.floor(timePassed / msInADay);
+        for (let i = 0; i < monthsToAdd; i++) {
+          gameState.date.month++;
+          if (gameState.date.month >= 12) {
+            gameState.date.month = 0;
+            gameState.date.year++;
+          
+  autoSaveGame();
+}
+          gameState.horses.forEach(horse => {
+            horse.age.months++;
+            if (horse.age.months >= 12) {
+              horse.age.months = 0;
+              horse.age.years++;
+            }
+          });
+        }
+        gameState.date.lastUpdate += monthsToAdd * msInADay;
+      }
+    }
+
+    
+function renderStable() {
+  const stableGrid = document.getElementById('stableGrid');
+  stableGrid.innerHTML = '';
+  gameState.horses.forEach((horse, index) => {
+    const card = document.createElement('div');
+    card.className = 'horse-card';
+
+    let html = '';
+    html += '<input type="text" value="' + horse.name + '" onchange="renameHorse(' + index + ', this.value)" /><br>';
+    html += 'Gender: ' + horse.gender + '<br>';
+    html += 'Age: ' + horse.age.years + ' years, ' + horse.age.months + ' months<br>';
+    html += 'Jumping: ' + horse.jumping + ', Endurance: ' + horse.endurance + ', Speed: ' + horse.speed + ', Obedience: ' + horse.obedience + '<br>';
+    html += 'Potential: ' + horse.potential + '/1000<br>';
+    if (horse.isPregnant) {
+      html += '<span style="color: darkred; font-weight: bold;">Pregnant (' + horse.pregnancyMonths + ' months)</span><br>';
+    }
+    if (!horse.tack) {
+      horse.tack = { bridle: null, saddle: null, horseBoots: null, horseShoes: null };
+    }
+    html += 'Tack:<br>';
+    for (let slot in horse.tack) {
+      const item = horse.tack[slot];
+      if (item) {
+        html += '- ' + slot + ': Level ' + item.level + ', Durability ' + item.durability + '<br>';
+      }
+    }
+    
+
+    if (horse.assignedRiderId !== null && gameState.riders[horse.assignedRiderId]) {
+      html += 'Rider: ' + gameState.riders[horse.assignedRiderId].name + '<br>';
+    } else {
+      html += 'Rider: None<br>';
+    }
+
+    card.innerHTML = html;
+    stableGrid.appendChild(card);
+  });
+}
+
+    function renameHorse(index, newName) {
+  gameState.horses[index].name = newName;
+  renderStable();
+  renderRiders();
+}
+  
+function hireRider() {
+  if (gameState.coins < 100000) {
+    alert("Not enough coins to hire a rider!");
+    return;
+  }
+  gameState.coins -= 100000;
+  document.getElementById('coinCount').textContent = gameState.coins;
+
+  const newRider = {
+    name: "Unnamed Rider",
+    balance: 1,
+    control: 1,
+    empathy: 1,
+    technique: 1,
+    experience: 0
+  };
+
+  gameState.riders.push(newRider);
+  renderRiders();
+}
+
+
+function renderRiders() {
+  const riderList = document.getElementById('riderList');
+  riderList.innerHTML = '';
+  gameState.riders.forEach((rider, riderIndex) => {
+    const div = document.createElement('div');
+    div.className = 'horse-card';
+
+    let horseOptions = '<option value="">-- Unassigned --</option>';
+    gameState.horses.forEach((horse, horseIndex) => {
+      const selected = horse.assignedRiderId === riderIndex ? 'selected' : '';
+      horseOptions += '<option value="' + horseIndex + '" ' + selected + '>' + horse.name + '</option>';
+    });
+
+    div.innerHTML =
+      '<input type="text" value="' + rider.name + '" onchange="renameRider(' + riderIndex + ', this.value)" /><br>' +
+      'Balance: ' + rider.balance + ', Control: ' + rider.control + ', Empathy: ' + rider.empathy + ', Technique: ' + rider.technique + '<br>' +
+      'Experience: ' + rider.experience + '/1000<br>' +
+      'Assign to Horse: <select onchange="assignRiderToHorse(' + riderIndex + ', this.value)">' + horseOptions + '</select>';
+
+    riderList.appendChild(div);
+  });
+}
+
+
+function renameRider(index, newName) {
+  gameState.riders[index].name = newName;
+  renderRiders();
+  renderStable();
+}
+
+function assignRiderToHorse(riderIndex, horseIndex) {
+  gameState.horses.forEach(horse => {
+    if (horse.assignedRiderId === riderIndex) {
+      horse.assignedRiderId = null;
+    }
+  });
+
+  if (horseIndex !== "") {
+    gameState.horses[parseInt(horseIndex)].assignedRiderId = riderIndex;
+  }
+
+  renderRiders();
+  renderStable();
+}
+
+
+
+// Setup: player's workshop skills by tack type
+if (!gameState.tackSkills) {
+  gameState.tackSkills = {
+    bridle: { durability: 1, prestige: 0, progress: 0 },
+    saddle: { durability: 1, prestige: 0, progress: 0 },
+    horseBoots: { durability: 1, prestige: 0, progress: 0 },
+    horseShoes: { durability: 1, prestige: 0, progress: 0 }
+  };
+}
+
+function craftTack(type) {
+  const skill = gameState.tackSkills[type];
+  const durability = skill.durability;
+  const prestige = skill.prestige;
+
+  // 1. Create new tack item
+  const item = {
+    type: type,
+    durability: durability,
+    level: prestige + 1
+  };
+
+  // 2. Add it to inventory
+  if (!gameState.tack) gameState.tack = [];
+  gameState.tack.push(item);
+
+  // 3. Calculate crafting difficulty
+  const base = 5;
+  const scaling = 0.5;
+  const prestigePenalty = 1;
+  const required = base + (durability * scaling) + (prestige * prestigePenalty);
+
+  // 4. Add progress with a random factor (±20%)
+  const luck = Math.random() * 0.4 + 0.8;
+  const gain = (1 / required) * luck;
+  skill.progress += gain;
+
+  // 5. Check for durability level up
+  if (skill.progress >= 1) {
+    skill.durability += 1;
+    skill.progress -= 1;
+  }
+
+  renderWorkshop();
+  renderTackRoom();
+  renderShowDropdown();
+  renderBreedingDropdowns();
+  renderTackRoom();
+  renderShowDropdown();
+  renderBreedingDropdowns(); // update inventory
+}
+
+function prestigeTack(type) {
+  const skill = gameState.tackSkills[type];
+  if (skill.durability >= 1000) {
+    skill.durability = 1;
+    skill.prestige += 1;
+    skill.progress = 0;
+  }
+  renderWorkshop();
+  renderTackRoom();
+  renderShowDropdown();
+  renderBreedingDropdowns();
+}
+
+
+
+function renderWorkshop() {
+  const container = document.getElementById('workshopStats');
+  container.innerHTML = '';
+  const skills = gameState.tackSkills;
+  for (let type in skills) {
+    const data = skills[type];
+    const label = {
+      bridle: "Bridle",
+      saddle: "Saddle",
+      horseBoots: "Horse Boots",
+      horseShoes: "Horse Shoes"
+    }[type];
+    const progressPercent = Math.floor(data.progress * 100);
+    const canPrestige = data.durability >= 1000;
+    const div = document.createElement('div');
+    div.className = 'horse-card';
+    div.innerHTML =
+      '<b>' + label + '</b><br>' +
+      'Durability: ' + data.durability + '/1000<br>' +
+      'Prestige: ' + data.prestige + '<br>' +
+      'Progress: ' + progressPercent + '%<br><br>' +
+      '<button onclick="craftTack(\'' + type + '\')">Craft ' + label + '</button><br>' +
+      (canPrestige ? '<button onclick="prestigeTack(\'' + type + '\')">Prestige</button>' : '');
+    container.appendChild(div);
+  }
+}
+
+
+
+
+
+function renderTackRoom() {
+  const prevSelectedHorse = document.getElementById('tackHorseSelect')?.value || '';
+
+  const room = document.getElementById('tackRoom');
+  room.innerHTML = '';
+
+  const types = ["bridle", "saddle", "horseBoots", "horseShoes"];
+  const labels = {
+    bridle: "Bridle",
+    saddle: "Saddle",
+    horseBoots: "Horse Boots",
+    horseShoes: "Horse Shoes"
+  };
+
+  const grouped = {
+    bridle: [],
+    saddle: [],
+    horseBoots: [],
+    horseShoes: []
+  };
+
+  // Group tack items into stacks
+  if (gameState.tack) {
+    gameState.tack.forEach((item, index) => {
+      const key = item.type + '-' + item.durability + '-' + item.level;
+      if (!grouped[item.type]) return;
+      let stack = grouped[item.type].find(g => g.key === key);
+      if (!stack) {
+        stack = {
+          type: item.type,
+          durability: item.durability,
+          level: item.level,
+          count: 1,
+          indexes: [index],
+          key: key
+        };
+        grouped[item.type].push(stack);
+      } else {
+        stack.count++;
+        stack.indexes.push(index);
+      }
+    });
+  }
+
+  const container = document.createElement('div');
+  container.style.display = 'flex';
+  container.style.gap = '20px';
+
+  types.forEach(type => {
+    const col = document.createElement('div');
+    col.style.flex = '1';
+    const title = document.createElement('h3');
+    title.textContent = labels[type];
+    col.appendChild(title);
+
+    grouped[type].forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'horse-card';
+      const sellValue = 50 + (item.level * item.durability);
+      div.innerHTML =
+        'Durability: ' + item.durability + '<br>' +
+        'Level: ' + item.level + '<br>' +
+        'Count: ' + item.count + '<br>' +
+        'Sell Value: ' + sellValue + ' coins<br>' +
+        '<button onclick="sellTackItem(\'' + item.key + '\')">Sell One</button>';
+      col.appendChild(div);
+    });
+
+    container.appendChild(col);
+  });
+
+  room.appendChild(container);
+}
+
+
+
+function sellTackItem(key) {
+  const grouped = {};
+  gameState.tack.forEach((item, index) => {
+    const k = item.type + '-' + item.durability + '-' + item.level;
+    if (!grouped[k]) {
+      grouped[k] = [];
+    }
+    grouped[k].push(index);
+  });
+
+  const toRemove = grouped[key]?.[0];
+  if (toRemove != null) {
+    const item = gameState.tack[toRemove];
+    const value = 50 + (item.level * item.durability);
+    gameState.coins += value;
+    gameState.tack.splice(toRemove, 1);
+    document.getElementById('coinCount').textContent = gameState.coins;
+    renderTackRoom();
+  renderShowDropdown();
+  renderBreedingDropdowns();
+  }
+}
+
+
+
+
+function renderTackRoom() {
+  const prevSelectedHorse = document.getElementById('tackHorseSelect')?.value || '';
+
+  const room = document.getElementById('tackRoom');
+  room.innerHTML = '';
+
+  // Dropdown for selecting horse
+  const dropdownDiv = document.createElement('div');
+  dropdownDiv.style.marginBottom = '10px';
+  const select = document.createElement('select');
+  select.id = 'tackHorseSelect';
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Select horse to equip tack to';
+  select.appendChild(defaultOption);
+
+  gameState.horses.forEach((horse, i) => {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = horse.name || 'Unnamed horse';
+    select.appendChild(option);
+    if (i === 0) updateShowDifficulty();
+  if (option.value === prevSelectedHorse) select.value = prevSelectedHorse;
+  });
+
+  dropdownDiv.appendChild(select);
+  room.appendChild(dropdownDiv);
+
+  const types = ["bridle", "saddle", "horseBoots", "horseShoes"];
+  const labels = {
+    bridle: "Bridle",
+    saddle: "Saddle",
+    horseBoots: "Horse Boots",
+    horseShoes: "Horse Shoes"
+  };
+
+  const grouped = {
+    bridle: [],
+    saddle: [],
+    horseBoots: [],
+    horseShoes: []
+  };
+
+  if (gameState.tack) {
+    gameState.tack.forEach((item, index) => {
+      const key = item.type + '-' + item.durability + '-' + item.level;
+      if (!grouped[item.type]) return;
+      let stack = grouped[item.type].find(g => g.key === key);
+      if (!stack) {
+        stack = {
+          type: item.type,
+          durability: item.durability,
+          level: item.level,
+          count: 1,
+          indexes: [index],
+          key: key
+        };
+        grouped[item.type].push(stack);
+      } else {
+        stack.count++;
+        stack.indexes.push(index);
+      }
+    });
+  }
+
+  const container = document.createElement('div');
+  container.style.display = 'flex';
+  container.style.gap = '20px';
+
+  types.forEach(type => {
+    const col = document.createElement('div');
+    col.style.flex = '1';
+    const title = document.createElement('h3');
+    title.textContent = labels[type];
+    col.appendChild(title);
+
+    grouped[type].forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'horse-card';
+      const sellValue = 50 + (item.level * item.durability);
+      div.innerHTML =
+        'Durability: ' + item.durability + '<br>' +
+        'Level: ' + item.level + '<br>' +
+        'Count: ' + item.count + '<br>' +
+        'Sell Value: ' + sellValue + ' coins<br>' +
+        '<button onclick="sellTackItem(\'' + item.key + '\')">Sell One</button><br>' +
+        '<button onclick="equipTackItem(\'' + item.key + '\')">Equip to Horse</button>';
+      col.appendChild(div);
+    });
+
+    container.appendChild(col);
+  });
+
+  room.appendChild(container);
+}
+
+
+
+function equipTackItem(key) {
+  const selectedIndexStr = document.getElementById('tackHorseSelect').value;
+  if (selectedIndexStr === '') {
+    alert("Please select a horse to equip this tack to.");
+    return;
+  }
+  const selectedIndex = parseInt(selectedIndexStr);
+  const horse = gameState.horses[selectedIndex];
+
+  if (!horse.tack) {
+    horse.tack = { bridle: null, saddle: null, horseBoots: null, horseShoes: null };
+  }
+
+  const grouped = {};
+  gameState.tack.forEach((item, index) => {
+    const k = item.type + '-' + item.durability + '-' + item.level;
+    if (!grouped[k]) grouped[k] = [];
+    grouped[k].push(index);
+  });
+
+  const toEquipIndex = grouped[key]?.[0];
+  if (toEquipIndex != null) {
+    const item = gameState.tack[toEquipIndex];
+    if (horse.tack[item.type]) {
+      alert('Horse already has a ' + item.type + ' equipped.');
+      return;
+    }
+
+    horse.tack[item.type] = { ...item };
+    gameState.tack.splice(toEquipIndex, 1);
+    renderStable();
+    renderTackRoom();
+    renderShowDropdown();
+    renderBreedingDropdowns();
+  } else {
+    alert("Could not find that tack item in your inventory.");
+  }
+}
+
+
+
+
+function renderShowDropdown() {
+  const select = document.getElementById('showHorseSelect');
+  if (!select) return;
+
+  const savedIndex = localStorage.getItem('lastSelectedShowHorseIndex');
+  select.innerHTML = '';
+
+  gameState.horses.forEach((horse, i) => {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = horse.name || 'Unnamed horse';
+    if (savedIndex && parseInt(savedIndex) === i) {
+      option.selected = true;
+    }
+    select.appendChild(option);
+  });
+
+  updateShowDifficulty();
+}
+
+
+function enterShow() {
+  const select = document.getElementById('showHorseSelect');
+  const index = parseInt(select.value);
+  localStorage.setItem('lastSelectedShowHorseIndex', index);
+  const horse = gameState.horses[index];
+  if (!horse) return;
+  if (horse.age.years < 3) {
+    alert("This horse is too young to compete.");
+    return;
+  
+  autoSaveGame();
+}
+  if (horse.isPregnant) {
+    alert("This mare is pregnant and cannot enter shows.");
+    return;
+  }
+  if (!horse.tack || !horse.tack.bridle || !horse.tack.saddle || !horse.tack.horseBoots || !horse.tack.horseShoes) {
+    alert("This horse is not fully equipped with tack!");
+    return;
+  }
+
+  const rider = gameState.riders[horse.assignedRiderId];
+  const difficulty = horse.difficulty || 0;
+
+  // Generate 19 fictional opponents
+  const opponents = [];
+  for (let i = 0; i < 19; i++) {
+    const boost = Math.max(-250, difficulty * 2);
+    const npcRange = Math.max(10, 300 + boost);
+    opponents.push({ score: Math.floor(Math.random() * npcRange)
+    });
+  }
+
+  // Player horse score calculation
+  let baseScore = horse.jumping + horse.endurance + horse.speed + horse.obedience;
+  if (rider) {
+    baseScore += rider.balance + rider.control + rider.technique + rider.empathy;
+  }
+  const weather = Math.floor(Math.random() * 21) - 10;
+  const mood = Math.floor(Math.random() * 21) - 10;
+  const finalScore = baseScore + weather + mood;
+  opponents.push({ score: finalScore, isPlayer: true });
+
+  opponents.sort((a, b) => b.score - a.score);
+  const placement = opponents.findIndex(o => o.score === finalScore) + 1;
+
+  let prize = 0;
+  if (difficulty >= 0 && placement <= 10) {
+    prize = Math.max(0, 100 - (placement - 1) * 10 + difficulty * 25);
+    gameState.coins += prize;
+  }
+
+  // Tack durability loss
+  const brokenTack = [];
+  for (let slot in horse.tack) {
+    const tackItem = horse.tack[slot];
+    if (tackItem) {
+      tackItem.durability -= 1;
+      if (tackItem.durability <= 0) {
+        horse.tack[slot] = null;
+      
+    if (tackItem) {
+      tackItem.durability -= 1;
+      if (tackItem.durability <= 0) {
+        brokenTack.push(slot);
+        horse.tack[slot] = null;
+      }
+    }
+  }
+    }
+  }
+
+  
+  // Potential gain
+  let gainedPotential = false;
+  let horseStatBoost = null;
+  if (Math.random() < Math.pow(0.85, placement - 1)) {
+    horse.potential += 1;
+    if (horse.potential >= 1000) {
+      horse.potential = 0;
+      const statToBoost = ['jumping', 'endurance', 'speed', 'obedience'][Math.floor(Math.random() * 4)];
+      horse[statToBoost]++;
+    }
+  }
+
+  // Rider XP
+  if (rider && Math.random() < Math.pow(0.85, placement - 1)) {
+    rider.experience = (rider.experience || 0) + 1;
+    if (rider.experience >= 1000) {
+      rider.experience = 0;
+      const statToBoost = ['balance', 'control', 'technique', 'empathy'][Math.floor(Math.random() * 4)];
+      rider[statToBoost]++;
+    }
+  }
+
+  // Difficulty tracking
+  horse.showStreak = horse.showStreak || { firsts: 0, lasts: 0 };
+  if (placement === 1) {
+    horse.showStreak.firsts++;
+    horse.showStreak.lasts = 0;
+    if (horse.showStreak.firsts >= 3) {
+      horse.difficulty = (horse.difficulty || 0) + 1;
+      horse.showStreak.firsts = 0;
+    }
+  } else if (placement === 20) {
+    horse.showStreak.lasts++;
+    horse.showStreak.firsts = 0;
+    if (horse.showStreak.lasts >= 10) {
+      horse.difficulty = (horse.difficulty || 0) - 1;
+      horse.showStreak.lasts = 0;
+    }
+  } else {
+    horse.showStreak.firsts = 0;
+    horse.showStreak.lasts = 0;
+  }
+
+  document.getElementById('coinCount').textContent = gameState.coins;
+  renderStable();
+  renderTackRoom && renderTackRoom();
+  renderShowDropdown();
+  document.getElementById('showResults').innerHTML =
+      `${horse.name || 'Unnamed horse'} placed ${placement} and earned ${prize} coins (Difficulty: ${horse.difficulty || 0})`
+      + (brokenTack.length > 0 ? `<br><b>Broken tack:</b> ${brokenTack.join(', ')}` : '');
+}
+
+
+
+
+
+function enterShow() {
+  const select = document.getElementById('showHorseSelect');
+  const index = parseInt(select.value);
+  localStorage.setItem('lastSelectedShowHorseIndex', index);
+  const horse = gameState.horses[index];
+  if (!horse) return;
+  if (horse.age.years < 3) {
+    alert("This horse is too young to compete.");
+    return;
+  
+  autoSaveGame();
+}
+  if (horse.isPregnant) {
+    alert("This mare is pregnant and cannot enter shows.");
+    return;
+  }
+  if (!horse.tack || !horse.tack.bridle || !horse.tack.saddle || !horse.tack.horseBoots || !horse.tack.horseShoes) {
+    alert("This horse is not fully equipped with tack!");
+    return;
+  }
+
+  const rider = gameState.riders[horse.assignedRiderId];
+  const difficulty = horse.difficulty || 0;
+
+  // Generate 19 fictional opponents
+  const opponents = [];
+  for (let i = 0; i < 19; i++) {
+    const boost = Math.max(-250, difficulty * 2);
+    const npcRange = Math.max(10, 300 + boost);
+    opponents.push({ score: Math.floor(Math.random() * npcRange)
+    });
+  }
+
+  // Player horse score calculation
+  let baseScore = horse.jumping + horse.endurance + horse.speed + horse.obedience;
+  if (rider) {
+    baseScore += rider.balance + rider.control + rider.technique + rider.empathy;
+  }
+  const weather = Math.floor(Math.random() * 21) - 10;
+  const mood = Math.floor(Math.random() * 21) - 10;
+  const finalScore = baseScore + weather + mood;
+  opponents.push({ score: finalScore, isPlayer: true });
+
+  opponents.sort((a, b) => b.score - a.score);
+  const placement = opponents.findIndex(o => o.score === finalScore) + 1;
+
+  let prize = 0;
+  if (difficulty >= 0 && placement <= 10) {
+    prize = Math.max(0, 100 - (placement - 1) * 10 + difficulty * 25);
+    gameState.coins += prize;
+  }
+
+  // Tack durability loss
+  const brokenTack = [];
+  for (let slot in horse.tack) {
+    const tackItem = horse.tack[slot];
+    if (tackItem) {
+      tackItem.durability -= 1;
+      if (tackItem.durability <= 0) {
+        horse.tack[slot] = null;
+      
+    if (tackItem) {
+      tackItem.durability -= 1;
+      if (tackItem.durability <= 0) {
+        brokenTack.push(slot);
+        horse.tack[slot] = null;
+      }
+    }
+  }
+    }
+  }
+
+  
+  // Potential gain
+  let gainedPotential = false;
+  let horseStatBoost = null;
+  if (Math.random() < Math.pow(0.85, placement - 1)) {
+    horse.potential += 1;
+    if (horse.potential >= 1000) {
+      horse.potential = 0;
+      const statToBoost = ['jumping', 'endurance', 'speed', 'obedience'][Math.floor(Math.random() * 4)];
+      horse[statToBoost]++;
+    }
+  }
+
+  // Rider XP
+  if (rider && Math.random() < Math.pow(0.85, placement - 1)) {
+    rider.experience = (rider.experience || 0) + 1;
+    if (rider.experience >= 1000) {
+      rider.experience = 0;
+      const statToBoost = ['balance', 'control', 'technique', 'empathy'][Math.floor(Math.random() * 4)];
+      rider[statToBoost]++;
+    }
+  }
+
+  // Difficulty tracking
+  horse.showStreak = horse.showStreak || { firsts: 0, lasts: 0 };
+  if (placement === 1) {
+    horse.showStreak.firsts++;
+    horse.showStreak.lasts = 0;
+    if (horse.showStreak.firsts >= 3) {
+      horse.difficulty = (horse.difficulty || 0) + 1;
+      horse.showStreak.firsts = 0;
+    }
+  } else if (placement === 20) {
+    horse.showStreak.lasts++;
+    horse.showStreak.firsts = 0;
+    if (horse.showStreak.lasts >= 10) {
+      horse.difficulty = (horse.difficulty || 0) - 1;
+      horse.showStreak.lasts = 0;
+    }
+  } else {
+    horse.showStreak.firsts = 0;
+    horse.showStreak.lasts = 0;
+  }
+
+  document.getElementById('coinCount').textContent = gameState.coins;
+  renderStable();
+  renderTackRoom && renderTackRoom();
+  renderShowDropdown();
+  document.getElementById('showResults').innerHTML =
+      `${horse.name || 'Unnamed horse'} placed ${placement} and earned ${prize} coins (Difficulty: ${horse.difficulty || 0})`
+      + (brokenTack.length > 0 ? `<br><b>Broken tack:</b> ${brokenTack.join(', ')}` : '');
+}
+
+
+
+
+function updateShowDifficulty() {
+  const index = parseInt(document.getElementById('showHorseSelect').value);
+  const horse = gameState.horses[index];
+  const difficulty = horse?.difficulty ?? 1;
+  document.getElementById('showDifficulty').innerText = 'Difficulty Level: ' + difficulty;
+}
+
+
+
+function calculateHorsePerformance(horse, isPlayerHorse, difficultyLevel) {
+  const baseStats = horse.jumping + horse.speed + horse.endurance + horse.obedience;
+
+  // Player horses are NOT affected by difficulty
+  let performance = baseStats;
+
+  // NPC horses ARE scaled by difficulty
+  if (!isPlayerHorse) {
+    const scalingFactor = 1 + (difficultyLevel / 100);
+    performance = Math.max(0, Math.floor(baseStats * scalingFactor));
+  }
+
+  // Add random variation for weather/mood
+  const randomFactor = 0.9 + Math.random() * 0.2; // between 0.9 and 1.1
+  performance = Math.floor(performance * randomFactor);
+
+  return performance;
+}
+
+
+function renderBreedingDropdowns() {
+  const mareSelect = document.getElementById("mareSelect");
+  const stallionSelect = document.getElementById("stallionSelect");
+  if (!mareSelect || !stallionSelect) return;
+
+  mareSelect.innerHTML = "";
+  stallionSelect.innerHTML = "";
+
+  gameState.horses.forEach((horse, index) => {
+    const age = horse.age?.years || 0;
+    const gender = horse.gender;
+    const name = horse.name || "Unnamed horse";
+
+    if (gender === "Mare" && age >= 3 && !horse.isPregnant) {
+      const option = document.createElement("option");
+      option.value = index;
+      option.textContent = name;
+      mareSelect.appendChild(option);
+    }
+
+    if (gender === "Stallion" && age >= 3) {
+      const option = document.createElement("option");
+      option.value = index;
+      option.textContent = name;
+      stallionSelect.appendChild(option);
+    }
+  });
+}
+
+function breedHorses() {
+  const mareIndex = document.getElementById("mareSelect").value;
+  const stallionIndex = document.getElementById("stallionSelect").value;
+  const resultDiv = document.getElementById("breedResult");
+
+  if (mareIndex === "" || stallionIndex === "") {
+    resultDiv.textContent = "Please select both a mare and a stallion.";
+    return;
+  
+  autoSaveGame();
+}
+
+  const mare = gameState.horses[parseInt(mareIndex)];
+  const stallion = gameState.horses[parseInt(stallionIndex)];
+
+  if (!mare || !stallion) {
+    resultDiv.textContent = "Selected horses could not be found.";
+    return;
+  }
+
+  mare.isPregnant = true;
+  mare.lastBredTo = parseInt(stallionIndex);
+  mare.pregnancyMonths = 0;
+
+  resultDiv.textContent = mare.name + " has been bred to " + stallion.name + " and is now pregnant.";
+}
+
+
+function generateFoal(mare, stallion) {
+  return {
+    name: "Unnamed Horse",
+    gender: Math.random() < 0.5 ? "Mare" : "Stallion",
+    
+    jumping: Math.max(1, Math.floor(((mare.jumping || 0) + (stallion?.jumping || 0)) * 0.10)),
+    endurance: Math.max(1, Math.floor(((mare.endurance || 0) + (stallion?.endurance || 0)) * 0.10)),
+    speed: Math.max(1, Math.floor(((mare.speed || 0) + (stallion?.speed || 0)) * 0.10)),
+    obedience: Math.max(1, Math.floor(((mare.obedience || 0) + (stallion?.obedience || 0)) * 0.10)),
+
+    potential: 0,
+    assignedRiderId: null,
+    age: { years: 0, months: 0 },
+    tack: { bridle: null, saddle: null, horseBoots: null, horseShoes: null }
+  };
+}
+
+
+function advanceOneMonth() {
+  gameState.date.month++;
+  if (gameState.date.month >= 12) {
+    gameState.date.month = 0;
+    gameState.date.year++;
+  }
+
+  gameState.horses.forEach(horse => {
+    horse.age.months++;
+    if (horse.age.months >= 12) {
+      horse.age.months = 0;
+      horse.age.years++;
+    }
+
+    if (horse.isPregnant) {
+      horse.pregnancyMonths = (horse.pregnancyMonths || 0) + 1;
+      if (horse.pregnancyMonths >= 11) {
+        const stallion = gameState.horses[horse.lastBredTo] || gameState.horses.find(h => h.gender === "Stallion");
+        
+const foal = generateFoal(horse, stallion);
+foal.sireId = gameState.horses.indexOf(stallion);
+foal.damId = gameState.horses.indexOf(horse);
+        gameState.horses.push(foal);
+        horse.isPregnant = false;
+        horse.pregnancyMonths = 0;
+      }
+    }
+  });
+
+  document.getElementById('dateDisplay').textContent =
+    `${monthNames[gameState.date.month]} Year ${gameState.date.year}`;
+  document.getElementById('coinCount').textContent = gameState.coins;
+  renderSalesYard();
+  renderStable();
+  renderBreedingDropdowns();
+  renderShowDropdown();
+}
+
+
+function enterShow() {
+  const select = document.getElementById('showHorseSelect');
+  const index = parseInt(select.value);
+  localStorage.setItem('lastSelectedShowHorseIndex', index);
+  const horse = gameState.horses[index];
+  if (!horse) return;
+  if (horse.age.years < 3) {
+    alert("This horse is too young to compete.");
+    return;
+  
+  autoSaveGame();
+}
+  if (horse.isPregnant) {
+    alert("This mare is pregnant and cannot enter shows.");
+    return;
+  }
+  if (!horse.tack || !horse.tack.bridle || !horse.tack.saddle || !horse.tack.horseBoots || !horse.tack.horseShoes) {
+    alert("This horse is not fully equipped with tack!");
+    return;
+  }
+
+  const rider = gameState.riders[horse.assignedRiderId];
+  const difficulty = horse.difficulty || 0;
+
+  const opponents = [];
+  for (let i = 0; i < 19; i++) {
+    const boost = difficulty * 2;
+    opponents.push({
+      score: Math.floor(Math.random() * (300 + boost))
+    });
+  }
+
+  let baseScore = horse.jumping + horse.endurance + horse.speed + horse.obedience;
+  if (rider) {
+    baseScore += rider.balance + rider.control + rider.technique + rider.empathy;
+  }
+  const weather = Math.floor(Math.random() * 21) - 10;
+  const mood = Math.floor(Math.random() * 21) - 10;
+  const finalScore = baseScore + weather + mood;
+  opponents.push({ score: finalScore, isPlayer: true });
+
+  opponents.sort((a, b) => b.score - a.score);
+  const placement = opponents.findIndex(o => o.isPlayer) + 1;
+
+  let prize = 0;
+  if (difficulty >= 0 && placement <= 10) {
+    prize = Math.max(0, 100 - (placement - 1) * 10 + difficulty * 25);
+    gameState.coins += prize;
+  }
+
+  const brokenTack = [];
+  for (let slot in horse.tack) {
+    const tackItem = horse.tack[slot];
+    if (tackItem) {
+      tackItem.durability -= 1;
+      if (tackItem.durability <= 0) {
+        brokenTack.push(slot);
+        horse.tack[slot] = null;
+      }
+    }
+  }
+
+  let gainedPotential = false;
+  let horseStatBoost = null;
+  if (Math.random() < Math.pow(0.85, placement - 1)) {
+    horse.potential += 1;
+    gainedPotential = true;
+    if (horse.potential >= 1000) {
+      horse.potential = 0;
+      const statToBoost = ['jumping', 'endurance', 'speed', 'obedience'][Math.floor(Math.random() * 4)];
+      horse[statToBoost]++;
+      horseStatBoost = statToBoost;
+    }
+  }
+
+  let gainedXP = false;
+  let riderStatBoost = null;
+  if (rider && Math.random() < Math.pow(0.85, placement - 1)) {
+    rider.experience = (rider.experience || 0) + 1;
+    gainedXP = true;
+    if (rider.experience >= 1000) {
+      rider.experience = 0;
+      const statToBoost = ['balance', 'control', 'technique', 'empathy'][Math.floor(Math.random() * 4)];
+      rider[statToBoost]++;
+      riderStatBoost = statToBoost;
+    }
+  }
+
+  horse.showStreak = horse.showStreak || { firsts: 0, lasts: 0 };
+  if (placement === 1) {
+    horse.showStreak.firsts++;
+    horse.showStreak.lasts = 0;
+    if (horse.showStreak.firsts >= 3) {
+      horse.difficulty = (horse.difficulty || 0) + 1;
+      horse.showStreak.firsts = 0;
+    }
+  } else if (placement === 20) {
+    horse.showStreak.lasts++;
+    horse.showStreak.firsts = 0;
+    if (horse.showStreak.lasts >= 10) {
+      horse.difficulty = (horse.difficulty || 0) - 1;
+      horse.showStreak.lasts = 0;
+    }
+  } else {
+    horse.showStreak.firsts = 0;
+    horse.showStreak.lasts = 0;
+  }
+
+  let resultsHTML =
+    `${horse.name || 'Unnamed horse'} placed ${placement} and earned ${prize} coins (Difficulty: ${horse.difficulty || 0})`
+    + (brokenTack.length > 0 ? `<br><b>Broken tack:</b> ${brokenTack.join(', ')}` : '')
+    + (gainedPotential ? `<br><b>Horse gained +1 potential</b>` : '')
+    + (horseStatBoost ? `<br><b>Horse stat increased:</b> ${horseStatBoost}` : '')
+    + (gainedXP ? `<br><b>Rider gained +1 XP</b>` : '')
+    + (riderStatBoost ? `<br><b>Rider stat increased:</b> ${riderStatBoost}` : '');
+
+  resultsHTML += '<br><br><u>Show Scores:</u><br>';
+  let npcCounter = 1;
+  opponents.forEach(o => {
+    if (o.isPlayer) {
+      resultsHTML += `You: ${o.score}<br>`;
+    } else {
+      resultsHTML += `NPC ${npcCounter++}: ${o.score}<br>`;
+    }
+  });
+
+  document.getElementById('coinCount').textContent = gameState.coins;
+  renderStable();
+  renderTackRoom && renderTackRoom();
+  renderShowDropdown();
+  document.getElementById('showResults').innerHTML = resultsHTML;
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  initializeGame();
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.content');
+
+  function activateTab(name) {
+    contents.forEach(c => c.style.display = 'none');
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelector(`.tab[data-tab="${name}"]`).classList.add('active');
+    document.getElementById(name).style.display = 'block';
+  if (name === 'clubhouse') {
+    renderRiders();
+  }
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      activateTab(target);
+    });
+  });
+
+  if (tabs.length > 0) {
+    activateTab(tabs[0].dataset.tab);
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  initializeGame();
+  const resetBtn = document.getElementById('resetGameButton');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function() {
+      if (!confirm("Are you sure you want to reset the game? This cannot be undone.")) return;
+      gameState.coins = 1000;
+      gameState.horses = [];
+      gameState.sales = [];
+      gameState.riders = [];
+      gameState.date = { year: 0, month: 0, lastUpdate: Date.now() };
+      gameState.tack = [];
+      gameState.tackSkills = {
+        bridle: { durability: 1, prestige: 0, progress: 0 },
+        saddle: { durability: 1, prestige: 0, progress: 0 },
+        horseBoots: { durability: 1, prestige: 0, progress: 0 },
+        horseShoes: { durability: 1, prestige: 0, progress: 0 }
+      };
+      alert("Game has been reset.");
+      location.reload();
+    });
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  initializeGame();
+  const saveBtn = document.getElementById('saveGameButton');
+  const loadBtn = document.getElementById('loadGameButton');
+  const loadInput = document.getElementById('loadGameInput');
+
+  saveBtn.addEventListener('click', function () {
+    const dataStr = JSON.stringify(gameState, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "virtual_ranch_save.json";
+    a.click();
+
+    URL.revokeObjectURL(url);
+  });
+
+  loadBtn.addEventListener('click', () => loadInput.click());
+
+  loadInput.addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        gameState = data;
+        alert("Game loaded successfully.");
+        location.reload();
+      } catch (err) {
+        alert("Failed to load save file.");
+      }
+    };
+    reader.readAsText(file);
+  });
+});
+
+
+function loadSavedGame() {
+  const saved = localStorage.getItem("virtualRanchSave");
+  if (saved) {
+    Object.assign(gameState, JSON.parse(saved));
+    renderStable();
+    renderSalesYard();
+    renderWorkshop();
+    renderTackRoom();
+    renderShowDropdown();
+    renderBreedingDropdowns();
+    document.getElementById("coinCount").textContent = gameState.coins;
+    document.getElementById("dateDisplay").textContent =
+      monthNames[gameState.date.month] + " Year " + gameState.date.year;
+  } else {
+    alert("No saved game found.");
+  }
+}
+
+
+document.body.addEventListener("click", function (e) {
+  if (e.target.tagName === "BUTTON") {
+    saveGameState();
+  }
+});
+
+</script>
+<div class="content" id="settings" style="display:none;">
+<h2>Settings</h2>
+<button id="resetGameButton">Reset Game</button>
+<br/><br/>
+<button id="saveGameButton">Save Game</button>
+<input accept=".json" id="loadGameInput" style="display:none;" type="file"/>
+<button id="loadGameButton">Load Game</button>
+</div>
+</body>
+</html>

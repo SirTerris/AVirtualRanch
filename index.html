@@ -841,14 +841,6 @@ select {
 </div>
 <div id="showResults" style="margin-top: 20px;"></div>
 </div>
-<div class="content" id="settings" style="display:none;">
-<h2>Settings</h2>
-<button id="resetGameButton">Reset Game</button>
-<br/><br/>
-<button id="saveGameButton">Save Game</button>
-<input accept=".json" id="loadGameInput" style="display:none;" type="file"/>
-<button id="loadGameButton">Load Game</button>
-</div>
 <script>
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.content');
@@ -2007,7 +1999,26 @@ function enterShow() {
 }
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  initializeGame();
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.content');
 
+  function activateTab(name) {
+    contents.forEach(c => c.style.display = 'none');
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelector(`.tab[data-tab="${name}"]`).classList.add('active');
+    document.getElementById(name).style.display = 'block';
+  if (name === 'clubhouse') {
+    renderRiders();
+  }
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      activateTab(target);
+    });
   });
 
   if (tabs.length > 0) {
@@ -2016,12 +2027,40 @@ function enterShow() {
 });
 
 
-
+document.addEventListener("DOMContentLoaded", function () {
+  initializeGame();
+  const resetBtn = document.getElementById('resetGameButton');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function() {
+      if (!confirm("Are you sure you want to reset the game? This cannot be undone.")) return;
+      gameState.coins = 1000;
+      gameState.horses = [];
+      gameState.sales = [];
+      gameState.riders = [];
+      gameState.date = { year: 0, month: 0, lastUpdate: Date.now() };
+      gameState.tack = [];
+      gameState.tackSkills = {
+        bridle: { durability: 1, prestige: 0, progress: 0 },
+        saddle: { durability: 1, prestige: 0, progress: 0 },
+        horseBoots: { durability: 1, prestige: 0, progress: 0 },
+        horseShoes: { durability: 1, prestige: 0, progress: 0 }
+      };
+      alert("Game has been reset.");
+      location.reload();
+    });
   }
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  initializeGame();
+  const saveBtn = document.getElementById('saveGameButton');
+  const loadBtn = document.getElementById('loadGameButton');
+  const loadInput = document.getElementById('loadGameInput');
 
+  saveBtn.addEventListener('click', function () {
+    const dataStr = JSON.stringify(gameState, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
@@ -2080,62 +2119,13 @@ document.body.addEventListener("click", function (e) {
 });
 
 </script>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  initializeGame();
-  const tabs = document.querySelectorAll('.tab');
-  const contents = document.querySelectorAll('.content');
-
-  function activateTab(name) {
-    contents.forEach(c => c.style.display = 'none');
-    tabs.forEach(t => t.classList.remove('active'));
-    document.querySelector(`.tab[data-tab="${name}"]`).classList.add('active');
-    document.getElementById(name).style.display = 'block';
-  if (name === 'clubhouse') {
-    renderRiders();
-  }
-  }
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab;
-      activateTab(target);
-    
-
-  initializeGame();
-  const resetBtn = document.getElementById('resetGameButton');
-  if (resetBtn) {
-    resetBtn.addEventListener('click', function() {
-      if (!confirm("Are you sure you want to reset the game? This cannot be undone.")) return;
-      gameState.coins = 1000;
-      gameState.horses = [];
-      gameState.sales = [];
-      gameState.riders = [];
-      gameState.date = { year: 0, month: 0, lastUpdate: Date.now() };
-      gameState.tack = [];
-      gameState.tackSkills = {
-        bridle: { durability: 1, prestige: 0, progress: 0 },
-        saddle: { durability: 1, prestige: 0, progress: 0 },
-        horseBoots: { durability: 1, prestige: 0, progress: 0 },
-        horseShoes: { durability: 1, prestige: 0, progress: 0 }
-      };
-      alert("Game has been reset.");
-      location.reload();
-    
-
-  initializeGame();
-  const saveBtn = document.getElementById('saveGameButton');
-  const loadBtn = document.getElementById('loadGameButton');
-  const loadInput = document.getElementById('loadGameInput');
-
-  saveBtn.addEventListener('click', function () {
-    const dataStr = JSON.stringify(gameState, null, 2);
-    const blob = new Blob([dataStr], { type: "application/json" 
-});
-</script>
-
+<div class="content" id="settings" style="display:none;">
+<h2>Settings</h2>
+<button id="resetGameButton">Reset Game</button>
+<br/><br/>
+<button id="saveGameButton">Save Game</button>
+<input accept=".json" id="loadGameInput" style="display:none;" type="file"/>
+<button id="loadGameButton">Load Game</button>
+</div>
 </body>
 </html>

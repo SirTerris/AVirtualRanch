@@ -787,7 +787,7 @@ select {
 </head>
 <body>
 <h1 style="text-align:center; margin-top: 20px;">Virtual Ranch</h1>
-<div id="coins">Coins: <span id="coinCount">1000</span></div>
+<div id="coins">Coins: <span id="coinCount">1000</span><button id="resetGameButton" style="margin-left: 20px;">Reset Game</button></div>
 <div id="gameDate" style="padding: 10px; background: #eef; font-weight: bold;">
     Date: <span id="dateDisplay"></span>
 </div>
@@ -1023,7 +1023,6 @@ function renderStable() {
       html += 'Rider: None<br>';
     }
 
-    html += '<button onclick="deleteHorse(' + index + ')">Delete Horse</button><br>';
     card.innerHTML = html;
     stableGrid.appendChild(card);
   });
@@ -2118,16 +2117,6 @@ document.body.addEventListener("click", function (e) {
   }
 });
 
-
-function deleteHorse(index) {
-  if (confirm("Are you sure you want to delete this horse?")) {
-    gameState.horses.splice(index, 1);
-    renderStable();
-    renderBreedingDropdowns();
-    renderShowDropdown();
-    renderTackRoom();
-  }
-}
 </script>
 </body>
 </html>

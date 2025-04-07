@@ -800,6 +800,7 @@ select {
 <div class="tab" data-tab="workshop">Workshop</div>
 <div class="tab" data-tab="tackRoom">Tack Room</div>
 <div class="tab" data-tab="shows">Shows</div>
+<div class="tab" data-tab="settings">Settings</div>
 </div>
 <div class="content active" id="salesYard">
 <h2>Sales Yard</h2>
@@ -1571,7 +1572,7 @@ function enterShow() {
   } else if (placement === 20) {
     horse.showStreak.lasts++;
     horse.showStreak.firsts = 0;
-    if (horse.showStreak.lasts >= 10) {
+    if (horse.showStreak.lasts >= 3) {
       horse.difficulty = (horse.difficulty || 0) - 1;
       horse.showStreak.lasts = 0;
     }
@@ -1700,7 +1701,7 @@ function enterShow() {
   } else if (placement === 20) {
     horse.showStreak.lasts++;
     horse.showStreak.firsts = 0;
-    if (horse.showStreak.lasts >= 10) {
+    if (horse.showStreak.lasts >= 3) {
       horse.difficulty = (horse.difficulty || 0) - 1;
       horse.showStreak.lasts = 0;
     }
@@ -1963,7 +1964,7 @@ function enterShow() {
   } else if (placement === 20) {
     horse.showStreak.lasts++;
     horse.showStreak.firsts = 0;
-    if (horse.showStreak.lasts >= 10) {
+    if (horse.showStreak.lasts >= 3) {
       horse.difficulty = (horse.difficulty || 0) - 1;
       horse.showStreak.lasts = 0;
     }
@@ -1995,7 +1996,6 @@ function enterShow() {
   renderTackRoom && renderTackRoom();
   renderShowDropdown();
   document.getElementById('showResults').innerHTML = resultsHTML;
-  renderRiders();
 }
 
 
@@ -2119,5 +2119,13 @@ document.body.addEventListener("click", function (e) {
 });
 
 </script>
+<div class="content" id="settings" style="display:none;">
+<h2>Settings</h2>
+<button id="resetGameButton">Reset Game</button>
+<br/><br/>
+<button id="saveGameButton">Save Game</button>
+<input accept=".json" id="loadGameInput" style="display:none;" type="file"/>
+<button id="loadGameButton">Load Game</button>
+</div>
 </body>
 </html>

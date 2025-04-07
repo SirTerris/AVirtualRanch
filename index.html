@@ -787,7 +787,7 @@ select {
 </head>
 <body>
 <h1 style="text-align:center; margin-top: 20px;">Virtual Ranch</h1>
-<div id="coins">Coins: <span id="coinCount">1000</span><button id="resetGameButton" style="margin-left: 20px;">Reset Game</button></div>
+<div id="coins">Coins: <span id="coinCount">1000</span></div>
 <div id="gameDate" style="padding: 10px; background: #eef; font-weight: bold;">
     Date: <span id="dateDisplay"></span>
 </div>
@@ -800,6 +800,7 @@ select {
 <div class="tab" data-tab="workshop">Workshop</div>
 <div class="tab" data-tab="tackRoom">Tack Room</div>
 <div class="tab" data-tab="shows">Shows</div>
+<div class="tab" data-tab="settings">Settings</div>
 </div>
 <div class="content active" id="salesYard">
 <h2>Sales Yard</h2>
@@ -1084,7 +1085,6 @@ function renameRider(index, newName) {
   gameState.riders[index].name = newName;
   renderRiders();
   renderStable();
-  saveGameState();
 }
 
 function assignRiderToHorse(riderIndex, horseIndex) {
@@ -2119,5 +2119,13 @@ document.body.addEventListener("click", function (e) {
 });
 
 </script>
+<div class="content" id="settings" style="display:none;">
+<h2>Settings</h2>
+<button id="resetGameButton">Reset Game</button>
+<br/><br/>
+<button id="saveGameButton">Save Game</button>
+<input accept=".json" id="loadGameInput" style="display:none;" type="file"/>
+<button id="loadGameButton">Load Game</button>
+</div>
 </body>
 </html>

@@ -800,7 +800,6 @@ select {
 <div class="tab" data-tab="workshop">Workshop</div>
 <div class="tab" data-tab="tackRoom">Tack Room</div>
 <div class="tab" data-tab="shows">Shows</div>
-
 </div>
 <div class="content active" id="salesYard">
 <h2>Sales Yard</h2>
@@ -1024,6 +1023,7 @@ function renderStable() {
       html += 'Rider: None<br>';
     }
 
+    html += '<button onclick="deleteHorse(' + index + ')">Delete Horse</button><br>';
     card.innerHTML = html;
     stableGrid.appendChild(card);
   });
@@ -2118,7 +2118,16 @@ document.body.addEventListener("click", function (e) {
   }
 });
 
-</script>
 
+function deleteHorse(index) {
+  if (confirm("Are you sure you want to delete this horse?")) {
+    gameState.horses.splice(index, 1);
+    renderStable();
+    renderBreedingDropdowns();
+    renderShowDropdown();
+    renderTackRoom();
+  }
+}
+</script>
 </body>
 </html>

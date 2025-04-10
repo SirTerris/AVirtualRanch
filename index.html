@@ -949,7 +949,7 @@ function initializeGame() {
   if (!gameState.sales || gameState.sales.length < 4) {
     gameState.sales = gameState.sales || [];
     while (gameState.sales.length < 4) {
-      gameState.sales.push(generateSaleHorse());
+      gameState.sales.push(generateHorse());
     }
   }
   document.getElementById("coinCount").textContent = gameState.coins;
@@ -2213,6 +2213,70 @@ function updateMarketplace() {
 
 document.addEventListener("DOMContentLoaded", () => {
   updateMarketplace();
+});
+</script><script>
+document.addEventListener("DOMContentLoaded", function () {
+  const saveBtn = document.getElementById('saveGameButton');
+  const loadBtn = document.getElementById('loadGameButton');
+  const loadInput = document.getElementById('loadGameInput');
+  const resetBtn = document.getElementById('resetGameButton');
+
+  if (saveBtn) {
+    saveBtn.addEventListener('click', function () {
+      const dataStr = JSON.stringify(gameState, null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "virtual_ranch_save.json";
+      a.click();
+
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  if (loadBtn && loadInput) {
+    loadBtn.addEventListener('click', () => loadInput.click());
+
+    loadInput.addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          gameState = data;
+          alert("Game loaded successfully.");
+          location.reload();
+        } catch (err) {
+          alert("Failed to load save file.");
+        }
+      };
+      reader.readAsText(file);
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      if (!confirm("Are you sure you want to reset the game? This cannot be undone.")) return;
+      gameState.coins = 1000;
+      gameState.horses = [];
+      gameState.sales = [];
+      gameState.riders = [];
+      gameState.date = { year: 0, month: 0, lastUpdate: Date.now() };
+      gameState.tack = [];
+      gameState.tackSkills = {
+        bridle: { durability: 1, prestige: 0, progress: 0 },
+        saddle: { durability: 1, prestige: 0, progress: 0 },
+        horseBoots: { durability: 1, prestige: 0, progress: 0 },
+        horseShoes: { durability: 1, prestige: 0, progress: 0 }
+      };
+      alert("Game has been reset.");
+      location.reload();
+    });
+  }
 });
 </script></body>
 </html>

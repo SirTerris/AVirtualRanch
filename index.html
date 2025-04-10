@@ -1031,6 +1031,7 @@ function renderStable() {
 
     function renameHorse(index, newName) {
   gameState.horses[index].name = newName;
+  saveGameState();
   renderStable();
   renderRiders();
 }
@@ -1083,6 +1084,7 @@ function renderRiders() {
 
 function renameRider(index, newName) {
   gameState.riders[index].name = newName;
+  saveGameState();
   renderRiders();
   renderStable();
 }

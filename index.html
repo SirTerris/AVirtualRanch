@@ -1100,6 +1100,7 @@ function assignRiderToHorse(riderIndex, horseIndex) {
     gameState.horses[parseInt(horseIndex)].assignedRiderId = riderIndex;
   }
 
+  saveGameState();
   renderRiders();
   renderStable();
 }
@@ -2184,6 +2185,7 @@ function buyHorseStat() {
     return;
   }
   gameState.coins -= 5000000;
+  saveGameState();
   const stat = ["jumping", "endurance", "speed", "obedience"][Math.floor(Math.random() * 4)];
   horse[stat]++;
   document.getElementById("coinCount").textContent = gameState.coins;
@@ -2200,6 +2202,7 @@ function buyRiderStat() {
     return;
   }
   gameState.coins -= 10000000;
+  saveGameState();
   const stat = ["balance", "control", "technique", "empathy"][Math.floor(Math.random() * 4)];
   rider[stat]++;
   document.getElementById("coinCount").textContent = gameState.coins;

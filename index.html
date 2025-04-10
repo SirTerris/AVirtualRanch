@@ -799,7 +799,7 @@ select {
 <div class="tab" data-tab="breeding">Breeding</div>
 <div class="tab" data-tab="workshop">Workshop</div>
 <div class="tab" data-tab="tackRoom">Tack Room</div>
-<div class="tab" data-tab="shows">Shows</div>
+<div class="tab" data-tab="shows">Shows</div><div class="tab" data-tab="marketplace">Marketplace</div>
 <div class="tab" data-tab="settings">Settings</div>
 </div>
 <div class="content active" id="salesYard">
@@ -2129,7 +2129,20 @@ function deleteHorse(index) {
   renderBreedingDropdowns();
 }
 </script>
-<div class="content" id="settings" style="display:none;">
+<div class="content" id="marketplace">
+<h2>Marketplace</h2>
+<div>
+<label for="marketHorseSelect">Select Horse:</label>
+<select id="marketHorseSelect"></select>
+<button onclick="buyHorseStat()">Buy Random Horse Stat (5,000,000 coins)</button>
+</div>
+<br/>
+<div>
+<label for="marketRiderSelect">Select Rider:</label>
+<select id="marketRiderSelect"></select>
+<button onclick="buyRiderStat()">Buy Random Rider Stat (10,000,000 coins)</button>
+</div>
+</div><div class="content" id="settings" style="display:none;">
 <h2>Settings</h2>
 <button id="resetGameButton">Reset Game</button>
 <br/><br/>
@@ -2137,5 +2150,67 @@ function deleteHorse(index) {
 <input accept=".json" id="loadGameInput" style="display:none;" type="file"/>
 <button id="loadGameButton">Load Game</button>
 </div>
-</body>
+<script>
+function renderMarketplaceDropdowns() {
+  const horseSelect = document.getElementById("marketHorseSelect");
+  const riderSelect = document.getElementById("marketRiderSelect");
+  if (!horseSelect || !riderSelect) return;
+
+  horseSelect.innerHTML = "";
+  gameState.horses.forEach((horse, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = horse.name || "Unnamed horse";
+    horseSelect.appendChild(option);
+  });
+
+  riderSelect.innerHTML = "";
+  gameState.riders.forEach((rider, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = rider.name || "Unnamed rider";
+    riderSelect.appendChild(option);
+  });
+}
+
+function buyHorseStat() {
+  const select = document.getElementById("marketHorseSelect");
+  const index = parseInt(select.value);
+  const horse = gameState.horses[index];
+  if (!horse || gameState.coins < 5000000) {
+    alert("Insufficient coins or invalid horse.");
+    return;
+  }
+  gameState.coins -= 5000000;
+  const stat = ["jumping", "endurance", "speed", "obedience"][Math.floor(Math.random() * 4)];
+  horse[stat]++;
+  document.getElementById("coinCount").textContent = gameState.coins;
+  renderStable();
+  alert(horse.name + " gained +1 " + stat + "!");
+}
+
+function buyRiderStat() {
+  const select = document.getElementById("marketRiderSelect");
+  const index = parseInt(select.value);
+  const rider = gameState.riders[index];
+  if (!rider || gameState.coins < 10000000) {
+    alert("Insufficient coins or invalid rider.");
+    return;
+  }
+  gameState.coins -= 10000000;
+  const stat = ["balance", "control", "technique", "empathy"][Math.floor(Math.random() * 4)];
+  rider[stat]++;
+  document.getElementById("coinCount").textContent = gameState.coins;
+  renderRiders();
+  alert(rider.name + " gained +1 " + stat + "!");
+}
+
+function updateMarketplace() {
+  renderMarketplaceDropdowns();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateMarketplace();
+});
+</script></body>
 </html>

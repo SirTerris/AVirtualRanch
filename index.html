@@ -2102,6 +2102,7 @@ document.addEventListener("DOMContentLoaded", function () {
       try {
         const data = JSON.parse(e.target.result);
         gameState = data;
+        gameState.date.lastUpdate = Date.now(); // Prevents time jump on manual file load
         alert("Game loaded successfully.");
         location.reload();
       } catch (err) {

@@ -1117,7 +1117,7 @@ function renderStable() {
       html += 'Rider: None<br>';
     }
 
-    card.innerHTML = html;
+    card.innerHTML = html + '<br><button onclick="deleteHorse(' + index + ')">Delete Horse</button>';
     stableGrid.appendChild(card);
   });
 }
@@ -1169,7 +1169,8 @@ function renderRiders() {
       'Experience: ' + rider.experience + '/1000<br>' +
       'Assign to Horse: <select onchange="assignRiderToHorse(' + riderIndex + ', this.value)">' + horseOptions + '</select>';
 
-    riderList.appendChild(div);
+    div.innerHTML += '<br><button onclick="deleteRider(' + riderIndex + ')">Delete Rider</button>';
+riderList.appendChild(div);
   });
 }
 
@@ -2336,6 +2337,24 @@ function renderExportDropdowns() {
     option.textContent = rider.name || `Unnamed Rider ${index+1}`;
     riderSelect.appendChild(option);
   });
+}
+</script><script>
+function deleteHorse(index) {
+  if (!confirm('Are you sure you want to delete this horse?')) return;
+  gameState.horses.splice(index, 1);
+  renderStable();
+  renderBreedingDropdowns();
+  renderShowDropdown();
+  renderTrainingDropdowns();
+  renderExportDropdowns();
+}
+
+function deleteRider(index) {
+  if (!confirm('Are you sure you want to delete this rider?')) return;
+  gameState.riders.splice(index, 1);
+  renderRiders();
+  renderTrainingDropdowns();
+  renderExportDropdowns();
 }
 </script></body>
 </html>

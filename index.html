@@ -800,7 +800,7 @@ select {
 <div class="tab" data-tab="workshop">Workshop</div>
 <div class="tab" data-tab="tackRoom">Tack Room</div>
 <div class="tab" data-tab="shows">Shows</div>
-<div class="tab" data-tab="settings">Settings</div>
+<div class="tab" data-tab="trainingCenter">Training Center</div><div class="tab" data-tab="settings">Settings</div>
 </div>
 <div class="content active" id="salesYard">
 <h2>Sales Yard</h2>
@@ -848,8 +848,145 @@ select {
 <button id="saveGameButton">Save Game</button>
 <input accept=".json" id="loadGameInput" style="display:none;" type="file"/>
 <button id="loadGameButton">Load Game</button>
+
+<h2>Import/Export Horses and Riders</h2>
+<h3>Export Horses</h3>
+<button onclick="exportHorses()">Download Horses (.json)</button>
+<h3>Import Horses</h3>
+<input accept=".json" id="importHorseFile" onchange="importHorses(event)" style="display:none;" type="file"/>
+<button onclick="document.getElementById('importHorseFile').click()">Upload Horses (.json)</button>
+<hr/>
+<h3>Export Riders</h3>
+<button onclick="exportRiders()">Download Riders (.json)</button>
+<h3>Import Riders</h3>
+<input accept=".json" id="importRiderFile" onchange="importRiders(event)" style="display:none;" type="file"/>
+<button onclick="document.getElementById('importRiderFile').click()">Upload Riders (.json)</button>
 </div>
 <script>
+function renderTrainingDropdowns() {
+  const horseSelect = document.getElementById('trainHorseSelect');
+  const riderSelect = document.getElementById('trainRiderSelect');
+  if (!horseSelect || !riderSelect) return;
+
+  horseSelect.innerHTML = '';
+  gameState.horses.forEach((horse, index) => {
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = horse.name || 'Unnamed Horse';
+    horseSelect.appendChild(option);
+  });
+
+  riderSelect.innerHTML = '';
+  gameState.riders.forEach((rider, index) => {
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = rider.name || 'Unnamed Rider';
+    riderSelect.appendChild(option);
+  });
+}
+
+function trainSelectedHorse() {
+  const select = document.getElementById('trainHorseSelect');
+  const horseIndex = parseInt(select.value);
+  const horse = gameState.horses[horseIndex];
+  if (!horse) return;
+  if (gameState.coins < 5000000) {
+    alert("Not enough coins to train your horse!");
+    return;
+  }
+  const stats = ['jumping', 'endurance', 'speed', 'obedience'];
+  const randomStat = stats[Math.floor(Math.random() * stats.length)];
+  horse[randomStat]++;
+  gameState.coins -= 5000000;
+  document.getElementById('coinCount').textContent = gameState.coins;
+  renderStable();
+  document.getElementById('horseTrainResult').innerText = `${horse.name} gained +1 ${randomStat}!`;
+}
+
+function trainSelectedRider() {
+  const select = document.getElementById('trainRiderSelect');
+  const riderIndex = parseInt(select.value);
+  const rider = gameState.riders[riderIndex];
+  if (!rider) return;
+  if (gameState.coins < 10000000) {
+    alert("Not enough coins to train your rider!");
+    return;
+  }
+  const stats = ['balance', 'control', 'technique', 'empathy'];
+  const randomStat = stats[Math.floor(Math.random() * stats.length)];
+  rider[randomStat]++;
+  gameState.coins -= 10000000;
+  document.getElementById('coinCount').textContent = gameState.coins;
+  renderRiders();
+  document.getElementById('riderTrainResult').innerText = `${rider.name} gained +1 ${randomStat}!`;
+}
+</script><script>
+function exportHorses() {
+  const dataStr = JSON.stringify(gameState.horses, null, 2);
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = "horses_export.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function exportRiders() {
+  const dataStr = JSON.stringify(gameState.riders, null, 2);
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = "riders_export.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importHorses(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const horses = JSON.parse(e.target.result);
+      if (Array.isArray(horses)) {
+        gameState.horses.push(...horses);
+        renderStable();
+        renderBreedingDropdowns();
+        renderShowDropdown();
+        renderTrainingDropdowns();
+        alert("Horses imported successfully.");
+      }
+    } catch (err) {
+      alert("Failed to import horses.");
+    }
+  };
+  reader.readAsText(file);
+}
+
+function importRiders(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const riders = JSON.parse(e.target.result);
+      if (Array.isArray(riders)) {
+        gameState.riders.push(...riders);
+        renderRiders();
+        renderTrainingDropdowns();
+        alert("Riders imported successfully.");
+      }
+    } catch (err) {
+      alert("Failed to import riders.");
+    }
+  };
+  reader.readAsText(file);
+}
+</script><script>
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.content');
     tabs.forEach(tab => {
@@ -920,6 +1057,7 @@ select {
   renderTackRoom();
   renderShowDropdown();
   renderBreedingDropdowns();
+  renderTrainingDropdowns();
             renderStable();
           } else {
             alert('Not enough coins.');
@@ -940,6 +1078,7 @@ select {
   renderTackRoom();
   renderShowDropdown();
   renderBreedingDropdowns();
+  renderTrainingDropdowns();
     });
 
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -968,6 +1107,7 @@ function initializeGame() {
   renderTackRoom();
   renderShowDropdown();
   renderBreedingDropdowns();
+  renderTrainingDropdowns();
 }
 
 
@@ -1171,9 +1311,11 @@ function craftTack(type) {
   renderTackRoom();
   renderShowDropdown();
   renderBreedingDropdowns();
+  renderTrainingDropdowns();
   renderTackRoom();
   renderShowDropdown();
-  renderBreedingDropdowns(); // update inventory
+  renderBreedingDropdowns();
+  renderTrainingDropdowns(); // update inventory
 }
 
 function prestigeTack(type) {
@@ -1187,6 +1329,7 @@ function prestigeTack(type) {
   renderTackRoom();
   renderShowDropdown();
   renderBreedingDropdowns();
+  renderTrainingDropdowns();
 }
 
 
@@ -1318,6 +1461,7 @@ function sellTackItem(key) {
     renderTackRoom();
   renderShowDropdown();
   renderBreedingDropdowns();
+  renderTrainingDropdowns();
   }
 }
 
@@ -1456,6 +1600,7 @@ function equipTackItem(key) {
     renderTackRoom();
     renderShowDropdown();
     renderBreedingDropdowns();
+  renderTrainingDropdowns();
   } else {
     alert("Could not find that tack item in your inventory.");
   }
@@ -1881,6 +2026,7 @@ foal.damId = gameState.horses.indexOf(horse);
   renderSalesYard();
   renderStable();
   renderBreedingDropdowns();
+  renderTrainingDropdowns();
   renderShowDropdown();
 }
 
@@ -2124,6 +2270,7 @@ function loadSavedGame() {
     renderTackRoom();
     renderShowDropdown();
     renderBreedingDropdowns();
+  renderTrainingDropdowns();
     document.getElementById("coinCount").textContent = gameState.coins;
     document.getElementById("dateDisplay").textContent =
       monthNames[gameState.date.month] + " Year " + gameState.date.year;
@@ -2140,6 +2287,16 @@ document.body.addEventListener("click", function (e) {
 });
 
 </script>
-
-</body>
+<div class="content" id="trainingCenter" style="display:none;">
+<h2>Training Center</h2>
+<h3>Horse Training</h3>
+<select id="trainHorseSelect"></select>
+<button onclick="trainSelectedHorse()">Train Horse (+1 random stat for 5M coins)</button>
+<div id="horseTrainResult" style="margin-top:10px;"></div>
+<hr/>
+<h3>Rider Training</h3>
+<select id="trainRiderSelect"></select>
+<button onclick="trainSelectedRider()">Train Rider (+1 random stat for 10M coins)</button>
+<div id="riderTrainResult" style="margin-top:10px;"></div>
+</div></body>
 </html>

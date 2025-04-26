@@ -842,25 +842,21 @@ select {
 <div id="showResults" style="margin-top: 20px;"></div>
 </div>
 <div class="content" id="settings" style="display:none;">
-<h2>Settings</h2>
-<button id="resetGameButton">Reset Game</button>
 <br/><br/>
-<button id="saveGameButton">Save Game</button>
-<input accept=".json" id="loadGameInput" style="display:none;" type="file"/>
-<button id="loadGameButton">Load Game</button>
-
 <h2>Import/Export Horses and Riders</h2>
-<h3>Export Horses</h3>
-<button onclick="exportHorses()">Download Horses (.json)</button>
-<h3>Import Horses</h3>
+<h3>Export Horse</h3>
+<select id="exportHorseSelect"></select>
+<button onclick="exportSelectedHorse()">Download Selected Horse (.json)</button>
+<h3>Import Horse</h3>
 <input accept=".json" id="importHorseFile" onchange="importHorses(event)" style="display:none;" type="file"/>
-<button onclick="document.getElementById('importHorseFile').click()">Upload Horses (.json)</button>
+<button onclick="document.getElementById('importHorseFile').click()">Upload Horse (.json)</button>
 <hr/>
-<h3>Export Riders</h3>
-<button onclick="exportRiders()">Download Riders (.json)</button>
-<h3>Import Riders</h3>
+<h3>Export Rider</h3>
+<select id="exportRiderSelect"></select>
+<button onclick="exportSelectedRider()">Download Selected Rider (.json)</button>
+<h3>Import Rider</h3>
 <input accept=".json" id="importRiderFile" onchange="importRiders(event)" style="display:none;" type="file"/>
-<button onclick="document.getElementById('importRiderFile').click()">Upload Riders (.json)</button>
+<button onclick="document.getElementById('importRiderFile').click()">Upload Rider (.json)</button>
 </div>
 <script>
 function renderTrainingDropdowns() {
@@ -919,72 +915,6 @@ function trainSelectedRider() {
   document.getElementById('coinCount').textContent = gameState.coins;
   renderRiders();
   document.getElementById('riderTrainResult').innerText = `${rider.name} gained +1 ${randomStat}!`;
-}
-</script><script>
-function exportHorses() {
-  const dataStr = JSON.stringify(gameState.horses, null, 2);
-  const blob = new Blob([dataStr], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = "horses_export.json";
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function exportRiders() {
-  const dataStr = JSON.stringify(gameState.riders, null, 2);
-  const blob = new Blob([dataStr], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = "riders_export.json";
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function importHorses(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    try {
-      const horses = JSON.parse(e.target.result);
-      if (Array.isArray(horses)) {
-        gameState.horses.push(...horses);
-        renderStable();
-        renderBreedingDropdowns();
-        renderShowDropdown();
-        renderTrainingDropdowns();
-        alert("Horses imported successfully.");
-      }
-    } catch (err) {
-      alert("Failed to import horses.");
-    }
-  };
-  reader.readAsText(file);
-}
-
-function importRiders(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    try {
-      const riders = JSON.parse(e.target.result);
-      if (Array.isArray(riders)) {
-        gameState.riders.push(...riders);
-        renderRiders();
-        renderTrainingDropdowns();
-        alert("Riders imported successfully.");
-      }
-    } catch (err) {
-      alert("Failed to import riders.");
-    }
-  };
-  reader.readAsText(file);
 }
 </script><script>
     const tabs = document.querySelectorAll('.tab');
@@ -1058,6 +988,7 @@ function importRiders(event) {
   renderShowDropdown();
   renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
             renderStable();
           } else {
             alert('Not enough coins.');
@@ -1079,6 +1010,7 @@ function importRiders(event) {
   renderShowDropdown();
   renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
     });
 
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -1108,6 +1040,7 @@ function initializeGame() {
   renderShowDropdown();
   renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
 }
 
 
@@ -1312,10 +1245,12 @@ function craftTack(type) {
   renderShowDropdown();
   renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
   renderTackRoom();
   renderShowDropdown();
   renderBreedingDropdowns();
-  renderTrainingDropdowns(); // update inventory
+  renderTrainingDropdowns();
+  renderExportDropdowns(); // update inventory
 }
 
 function prestigeTack(type) {
@@ -1330,6 +1265,7 @@ function prestigeTack(type) {
   renderShowDropdown();
   renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
 }
 
 
@@ -1462,6 +1398,7 @@ function sellTackItem(key) {
   renderShowDropdown();
   renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
   }
 }
 
@@ -1601,6 +1538,7 @@ function equipTackItem(key) {
     renderShowDropdown();
     renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
   } else {
     alert("Could not find that tack item in your inventory.");
   }
@@ -2027,6 +1965,7 @@ foal.damId = gameState.horses.indexOf(horse);
   renderStable();
   renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
   renderShowDropdown();
 }
 
@@ -2271,6 +2210,7 @@ function loadSavedGame() {
     renderShowDropdown();
     renderBreedingDropdowns();
   renderTrainingDropdowns();
+  renderExportDropdowns();
     document.getElementById("coinCount").textContent = gameState.coins;
     document.getElementById("dateDisplay").textContent =
       monthNames[gameState.date.month] + " Year " + gameState.date.year;
@@ -2298,5 +2238,104 @@ document.body.addEventListener("click", function (e) {
 <select id="trainRiderSelect"></select>
 <button onclick="trainSelectedRider()">Train Rider (+1 random stat for 10M coins)</button>
 <div id="riderTrainResult" style="margin-top:10px;"></div>
-</div></body>
+</div><script>
+function exportSelectedHorse() {
+  const select = document.getElementById('exportHorseSelect');
+  const index = parseInt(select.value);
+  const horse = gameState.horses[index];
+  if (!horse) return alert("Select a valid horse.");
+
+  const dataStr = JSON.stringify(horse, null, 2);
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${horse.name || 'Unnamed_Horse'}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function exportSelectedRider() {
+  const select = document.getElementById('exportRiderSelect');
+  const index = parseInt(select.value);
+  const rider = gameState.riders[index];
+  if (!rider) return alert("Select a valid rider.");
+
+  const dataStr = JSON.stringify(rider, null, 2);
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${rider.name || 'Unnamed_Rider'}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importHorses(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const horse = JSON.parse(e.target.result);
+      if (horse && typeof horse === 'object') {
+        gameState.horses.push(horse);
+        renderStable();
+        renderBreedingDropdowns();
+        renderShowDropdown();
+        renderTrainingDropdowns();
+        renderExportDropdowns();
+        alert("Horse imported successfully.");
+      }
+    } catch (err) {
+      alert("Failed to import horse.");
+    }
+  };
+  reader.readAsText(file);
+}
+
+function importRiders(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const rider = JSON.parse(e.target.result);
+      if (rider && typeof rider === 'object') {
+        gameState.riders.push(rider);
+        renderRiders();
+        renderTrainingDropdowns();
+        renderExportDropdowns();
+        alert("Rider imported successfully.");
+      }
+    } catch (err) {
+      alert("Failed to import rider.");
+    }
+  };
+  reader.readAsText(file);
+}
+
+function renderExportDropdowns() {
+  const horseSelect = document.getElementById('exportHorseSelect');
+  const riderSelect = document.getElementById('exportRiderSelect');
+
+  horseSelect.innerHTML = '';
+  gameState.horses.forEach((horse, index) => {
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = horse.name || `Unnamed Horse ${index+1}`;
+    horseSelect.appendChild(option);
+  });
+
+  riderSelect.innerHTML = '';
+  gameState.riders.forEach((rider, index) => {
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = rider.name || `Unnamed Rider ${index+1}`;
+    riderSelect.appendChild(option);
+  });
+}
+</script></body>
 </html>

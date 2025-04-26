@@ -2287,6 +2287,7 @@ function importHorses(event) {
         renderShowDropdown();
         renderTrainingDropdowns();
         renderExportDropdowns();
+        saveGame();
         alert("Horse imported successfully.");
       }
     } catch (err) {
@@ -2309,6 +2310,7 @@ function importRiders(event) {
         renderRiders();
         renderTrainingDropdowns();
         renderExportDropdowns();
+        saveGame();
         alert("Rider imported successfully.");
       }
     } catch (err) {
